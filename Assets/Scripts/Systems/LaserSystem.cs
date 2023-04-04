@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 using UnityEngine;
 
 
+/// <summary> Handles the Laser archetype. </summary>
 public class LaserSystem : System<LaserArchetype> {
 
     /*#########*/
@@ -50,6 +51,7 @@ public class LaserSystem : System<LaserArchetype> {
     /* I M P L E M E N T A T I O N S */
     /*###############################*/
 
+        /// <summary> Updates the laser's and its reflection's power by recursion. </summary>
         private static void ApplyCascading(LaserArchetype laser) {
             if (laser.data.reflection) {
 
@@ -60,9 +62,11 @@ public class LaserSystem : System<LaserArchetype> {
 
             if (laser.data.power < 0)
                 Destroy(laser.gameObject);
+
         } // void ..
 
 
+        /// <summary> Handle the laser's shooting behaviour. </summary>
         private void Shoot() {
 
             RaycastHit2D hit = Physics2D.Raycast(
@@ -164,6 +168,7 @@ public class LaserSystem : System<LaserArchetype> {
         } // void .. 
 
 
+        /// <summary> Update the laser's reflection. </summary>
         private void UpdateReflection(
             Vector2 origin,
             Vector2 dir,
@@ -209,6 +214,7 @@ public class LaserSystem : System<LaserArchetype> {
         } // void ..
 
 
+        /// <summary> A coroutine that applies a 'glitch' or shake effect to the camera. </summary>
         private IEnumerator Shake() {
             for (int i = 0; i < 10; i++) {
                 this.effect.intensity.value = DEFAULT_EFFECT_INTENSITY + i * 0.05f;

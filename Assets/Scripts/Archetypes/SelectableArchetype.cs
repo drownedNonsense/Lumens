@@ -7,10 +7,10 @@ public class SelectableArchetype : Archetype {
         public SelectionData data { get; private set; }
 
 
-    /*###################*/
-    /* L I F E   T I M E */
-    /*###################*/
-
-        protected override void LoadComponents() =>
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
+    
+        protected override void InitComponents() =>
             this.data = this.GetComponent<SelectionData>();
 } // class ..

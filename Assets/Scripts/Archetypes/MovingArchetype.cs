@@ -11,11 +11,11 @@ public class MovingArchetype : Archetype {
         public Rigidbody2D  body { get; private set; }
 
 
-    /*###################*/
-    /* L I F E   T I M E */
-    /*###################*/
-
-        protected override void LoadComponents() {
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
+    
+        protected override void InitComponents() {
             this.data = this.GetComponent<MovementData>();
             this.body = this.GetComponent<Rigidbody2D>();
             this.gameObject.AddComponent<MovementSystem>();

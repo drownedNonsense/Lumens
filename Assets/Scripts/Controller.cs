@@ -19,6 +19,7 @@ public class Button {
 } // struct ..
 
 
+/// <summary> A wrapper component for Unity's Input System. </summary>
 public class Controller : MonoBehaviour {
 
     /*#########*/

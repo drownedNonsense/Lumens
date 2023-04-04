@@ -14,11 +14,11 @@ public class CatalystArchetype : Archetype {
         private const float LIGHT_RADIUS    = 8f;
 
 
-    /*###################*/
-    /* L I F E   T I M E */
-    /*###################*/
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
 
-        protected override void LoadComponents() {
+        protected override void InitComponents() {
             this.data  = this.GetComponent<CatalystData>();
             this.light = this.GetComponent<Light2D>();
         } // void ..

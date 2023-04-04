@@ -1,7 +1,10 @@
 using UnityEngine;
 
 
+/// <summary> A static container of all Lumens' generic values. </summary>
 public static class Generic {
+
+    /// <summary> A type which represents all combination of higher planes intersections. </summary>
     public enum PlaneLayer {
         White  = 0b0001,
         Red    = 0b0011,
@@ -31,9 +34,14 @@ public static class Generic {
     public const int RED_LAYER     = 1 << RED;
     public const int YELLOW_LAYER  = 1 << YELLOW;
     public const int BLUE_LAYER    = 1 << BLUE;
+    
 
+    /// <summary> A 32 bit encoded colour associated with plane. </summary>
     public static Color32 PlaneColor(PlaneLayer planeType) => PLANE_COLOR_LOOKUP[(int)planeType >> 1];
-    public static Color32 PlaneColor(int planeLayer)       => PLANE_COLOR_LOOKUP[planeLayer];
+
+    /// <summary> A 32 bit encoded colour associated with a plane mask. </summary>
+    public static Color32 PlaneColor(int planeLayer) => PLANE_COLOR_LOOKUP[planeLayer];
+
 
     private static readonly Color32[] PLANE_COLOR_LOOKUP = new Color32[8] {
         new Color32(255, 255, 255, 255), // 000 WHITE

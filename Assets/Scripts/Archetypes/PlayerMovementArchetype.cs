@@ -8,11 +8,11 @@ public class PlayerMovementArchetype : Archetype {
         public SelectionData selectionData { get; private set; }
 
 
-    /*###################*/
-    /* L I F E   T I M E */
-    /*###################*/
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
 
-        protected override void LoadComponents() {
+        protected override void InitComponents() {
             this.data          = this.GetComponent<MovementData>();
             this.selectionData = this.GetComponent<SelectionData>();
             this.gameObject.AddComponent<MovementInputSystem>();

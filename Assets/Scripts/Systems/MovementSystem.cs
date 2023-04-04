@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+/// <summary> Handles entity movement. </summary>
 public class MovementSystem : System<MovingArchetype> {
 
     /*###################*/

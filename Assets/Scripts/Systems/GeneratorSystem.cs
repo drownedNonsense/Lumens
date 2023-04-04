@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+/// <summary> Handles the Generator archetype. </summary>
 public class GeneratorSystem : System<GeneratorArchetype> {
 
     /*#########*/
@@ -9,6 +10,7 @@ public class GeneratorSystem : System<GeneratorArchetype> {
 
             private Controller controller;
 
+            /// <summary> The amount of time every lasers can be reflected. </summary>
             public static int power { get; private set; } = 3;
 
 
@@ -23,7 +25,6 @@ public class GeneratorSystem : System<GeneratorArchetype> {
             
 
         private void Update() {
-
             this.archetype.laserData.power = this.archetype.selectionData.isSelected
                 ? GeneratorSystem.power
                 : 0;
@@ -32,10 +33,18 @@ public class GeneratorSystem : System<GeneratorArchetype> {
                 | Generic.SPECIAL_LAYER
                 | Generic.FLOOR_LAYER
                 | Generic.DEFAULT_LAYER;
-            
         } // void ..
+        
 
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
+
+        /// <summary> Increases the power of all generator by multiplying it by 2. </summary>
         public static void IncreasePower() => GeneratorSystem.power <<= 1;
+
+
+        /// <summary> Returns the plane of the last laser reflection coming from this generator. </summary>
         private Generic.PlaneLayer CurrentPlane() {
             return NextPlane(this.archetype.laserData);
 

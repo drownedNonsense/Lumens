@@ -12,11 +12,11 @@ public class PlaneArchetype : Archetype {
         public Light2D[]  lights    { get; private set; }
 
 
-    /*###################*/
-    /* L I F E   T I M E */
-    /*###################*/
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
 
-        protected override void LoadComponents() {
+        protected override void InitComponents() {
             this.renderers = this.GetComponentsInChildren<Renderer>();
             this.lights    = this.GetComponentsInChildren<Light2D>();
         } // void ..

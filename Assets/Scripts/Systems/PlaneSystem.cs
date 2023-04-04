@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 
+/// <summary> Handles the plane archetypes. </summary>
 public class PlaneSystem : StaticSystem<PlaneArchetype> {
     
     /*#########*/
@@ -21,42 +22,48 @@ public class PlaneSystem : StaticSystem<PlaneArchetype> {
                 SetChildrenLayer(plane.transform);
 
                 
-                foreach (Renderer renderer in plane.renderers) renderer.material.color = PlaneColor(renderer.gameObject);
-                foreach (Light2D light in plane.lights) light.color = PlaneColor(light.gameObject);
+                foreach (Renderer renderer in plane.renderers) renderer.material.color = ObjectColor(renderer.gameObject);
+                foreach (Light2D light in plane.lights) light.color = ObjectColor(light.gameObject);
 
             } // foreach ..
         } // void ..
 
 
-    private Color32 PlaneColor(GameObject gameObject) {
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
+    
+        /// <summary> Returns the colour the game object should have. </summary>
+        private static Color32 ObjectColor(GameObject gameObject) {
 
-        string[] tagArguments = gameObject.tag.Split(' ');
-        Color32 planeColor    = Generic.PlaneColor(Mathf.Max(gameObject.layer - Generic.WHITE, Generic.DEFAULT));
+            string[] tagArguments = gameObject.tag.Split(' ');
+            Color32 planeColor    = Generic.PlaneColor(Mathf.Max(gameObject.layer - Generic.WHITE, Generic.DEFAULT));
 
-        if (gameObject.layer != Generic.WHITE)
-            planeColor.a = 192;
+            if (gameObject.layer != Generic.WHITE)
+                planeColor.a = 192;
 
-        if (tagArguments.Length > 1)
-            planeColor = tagArguments[1] switch {
-                "Red"    => Generic.PlaneColor(Generic.PlaneLayer.Red),
-                "Yellow" => Generic.PlaneColor(Generic.PlaneLayer.Yellow),
-                "Blue"   => Generic.PlaneColor(Generic.PlaneLayer.Blue),
-                _        => planeColor,
-            }; // switch ..
+            if (tagArguments.Length > 1)
+                planeColor = tagArguments[1] switch {
+                    "Red"    => Generic.PlaneColor(Generic.PlaneLayer.Red),
+                    "Yellow" => Generic.PlaneColor(Generic.PlaneLayer.Yellow),
+                    "Blue"   => Generic.PlaneColor(Generic.PlaneLayer.Blue),
+                    _        => planeColor,
+                }; // switch ..
 
-        return planeColor;
+            return planeColor;
 
-    } // Color32 ..
+        } // Color32 ..
 
 
-    private void SetChildrenLayer(Transform parent) {
-        foreach (Transform child in parent) {
+        /// <summary> Sets default children's default layer to the parent's layer. </summary>
+        private static void SetChildrenLayer(Transform parent) {
+            foreach (Transform child in parent) {
 
-            if (child.gameObject.layer == Generic.DEFAULT)
-                child.gameObject.layer = parent.gameObject.layer;
-                
-            SetChildrenLayer(child);
+                if (child.gameObject.layer == Generic.DEFAULT)
+                    child.gameObject.layer = parent.gameObject.layer;
+                    
+                SetChildrenLayer(child);
 
-        } // foreach ..
-    } // voiid ..
+            } // foreach ..
+        } // voiid ..
 } // class ..

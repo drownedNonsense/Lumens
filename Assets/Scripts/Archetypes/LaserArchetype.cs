@@ -57,7 +57,11 @@ public class LaserArchetype : Archetype {
         } // void ..
 
 
-        protected override void LoadComponents() {
+    /*###############################*/
+    /* I M P L E M E N T A T I O N S */
+    /*###############################*/
+    
+        protected override void InitComponents() {
             this.data     = this.GetComponent<LaserData>();
             this.renderer = this.GetComponent<LineRenderer>();
             this.light    = this.GetComponentInChildren<Light2D>();

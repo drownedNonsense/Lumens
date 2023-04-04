@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+/// <summary> Handles player input into entity movemet. </summary>
 public class MovementInputSystem : System<PlayerMovementArchetype> {
 
     /*#########*/

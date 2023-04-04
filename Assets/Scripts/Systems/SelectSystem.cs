@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+/// <summary> Handles selection. </summary>
 public class SelectSystem : StaticSystem<SelectableArchetype> {
 
     /*#########*/
