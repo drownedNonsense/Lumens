@@ -11,10 +11,16 @@ public class MovementSystem : System<MovingArchetype> {
         private void FixedUpdate() {
             this.archetype
                 .body
-                .MovePosition((Vector2)this.transform.position + this.archetype.data.translation);
+                .MovePosition(
+                    (Vector2)this.transform.position
+                    + this.archetype.data.translation
+                    * Time.deltaTime);
             
             this.archetype
                 .body
-                .MoveRotation(this.transform.eulerAngles.z + this.archetype.data.rotation);
+                .MoveRotation(
+                    this.transform.eulerAngles.z
+                    + this.archetype.data.rotation
+                    * Time.deltaTime);
         } // void ..
 } // class ..

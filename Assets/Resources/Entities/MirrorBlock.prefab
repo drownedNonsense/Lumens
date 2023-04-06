@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8377640112965936411}
   - component: {fileID: 2264644850205804107}
   - component: {fileID: 5304599057711420951}
+  - component: {fileID: 6812092599216150262}
   m_Layer: 0
   m_Name: MirrorBlock
   m_TagString: Reflective
@@ -210,6 +211,18 @@ PolygonCollider2D:
       - {x: 0.4375, y: 0.375}
       - {x: 0.4375, y: -0.375}
       - {x: 0.375, y: -0.4375}
+--- !u!114 &6812092599216150262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2264644850205804106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2353e7b5e5050b14e830c89378fdaca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2810138559364210990
 GameObject:
   m_ObjectHideFlags: 0

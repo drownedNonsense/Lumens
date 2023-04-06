@@ -25,7 +25,11 @@ public class GeneratorSystem : System<GeneratorArchetype> {
             
 
         private void Update() {
-            this.archetype.laserData.power = this.archetype.selectionData.isSelected
+
+            this.archetype.powerData.isPowered = this.archetype.selectionData.isActive;
+            
+            this.archetype.laserData.power =
+                this.archetype.selectionData.isSelected && this.archetype.powerData.isActivated
                 ? GeneratorSystem.power
                 : 0;
 

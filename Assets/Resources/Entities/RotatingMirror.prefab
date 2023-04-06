@@ -58,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5083241436530920984}
   - component: {fileID: 8195119281000859164}
+  - component: {fileID: 3810130190956611747}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Reflective
@@ -109,6 +110,18 @@ PolygonCollider2D:
       - {x: -0.4375, y: 0.3125}
       - {x: 0.4375, y: 0.3125}
       - {x: 0.5, y: 0.25}
+--- !u!114 &3810130190956611747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3083575348125719638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2353e7b5e5050b14e830c89378fdaca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3555883836118514581
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4017776140381091463}
-  - component: {fileID: 7799214303523307718}
+  - component: {fileID: 3861952310963205709}
   - component: {fileID: 3361476418163843489}
   - component: {fileID: 2175748071573441895}
   - component: {fileID: 8267973303410492726}
@@ -209,7 +222,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7799214303523307718
+--- !u!114 &3861952310963205709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6374777232174621672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7698881271f1cc544a6fdb622c13ca98, type: 3}
+  m_Script: {fileID: 11500000, guid: d66d4ae8aae0b154c8c88d4a2b65c12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3361476418163843489

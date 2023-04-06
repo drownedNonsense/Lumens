@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032166208946832089}
-  - component: {fileID: 6173484803244127384}
+  - component: {fileID: 3102715783177768537}
   - component: {fileID: 1672703875784005119}
   - component: {fileID: 2855617488859969849}
   - component: {fileID: 5417058803419345256}
@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 2941867039741885223}
   - component: {fileID: 7012889979208122653}
   - component: {fileID: 5306336593747591862}
+  - component: {fileID: 1697527066434597631}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Prism
@@ -88,7 +89,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6173484803244127384
+--- !u!114 &3102715783177768537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7054675167506618294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7698881271f1cc544a6fdb622c13ca98, type: 3}
+  m_Script: {fileID: 11500000, guid: d66d4ae8aae0b154c8c88d4a2b65c12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1672703875784005119
@@ -241,3 +242,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &1697527066434597631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054675167506618294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68dc3287fd671ab438adfaf7058b0fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

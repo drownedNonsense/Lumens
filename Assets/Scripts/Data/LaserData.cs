@@ -10,8 +10,8 @@ public class LaserData : MonoBehaviour {
         /// <summary> The number of times a laser can be reflected. </summary>
         public int power = 1;
 
-        /// <summary> Is true when the laser reflection was made from a catalyst. </summary>
-        public bool fromCatalyst = false;
+        /// <summary> The collider's tag. </summary>
+        public LaserInteractable laserInteractable = null;
 
         /// <summary> A reference to the laser's reflection. </summary>
         public LaserArchetype reflection = null;

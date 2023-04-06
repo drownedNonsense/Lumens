@@ -1,4 +1,4 @@
-public class PlayerMovementArchetype : Archetype {
+public class PlayerRotationArchetype : Archetype {
 
     /*#########*/
     /* D A T A */
@@ -15,6 +15,6 @@ public class PlayerMovementArchetype : Archetype {
         protected override void InitComponents() {
             this.data          = this.GetComponent<MovementData>();
             this.selectionData = this.GetComponent<SelectionData>();
-            this.gameObject.AddComponent<MovementInputSystem>();
+            this.gameObject.AddComponent<RotationInputSystem>();
         } // void ..
 } // class ..

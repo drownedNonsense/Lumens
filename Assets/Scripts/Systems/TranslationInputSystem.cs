@@ -1,8 +1,8 @@
 using UnityEngine;
 
 
-/// <summary> Handles player input into entity movemet. </summary>
-public class MovementInputSystem : System<PlayerMovementArchetype> {
+/// <summary> Handles player translation input into entity movemet. </summary>
+public class TranslationInputSystem : System<PlayerTranslationArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -21,22 +21,12 @@ public class MovementInputSystem : System<PlayerMovementArchetype> {
         } // void ..
 
 
-        private void Update() {
-            
+        private void Update() =>
             this.archetype.data.translation = Vector2.Lerp(
                 this.archetype.data.translation,
                 this.archetype.selectionData.isActive
-                    ? this.controller.movement * Time.deltaTime
+                    ? this.controller.movement
                     : Vector2.zero,
                 0.5f
             ); // Lerp()
-
-            this.archetype.data.rotation = Mathf.Lerp(
-                this.archetype.data.rotation,
-                this.archetype.selectionData.isActive
-                    ? this.controller.z * 22.5f * Time.deltaTime
-                    : 0f,
-                0.5f
-            ); // Lerp()
-        } // void ..
 } // class ..
