@@ -13,7 +13,7 @@
  # TODO LIST (ordered)
 - [x] Implement laser reflection
 - [x] Implement hyperplane interactions & catalysts
-- [ ] Implement buttons, self-moving obstacles and mirrors
+- [x] Implement buttons, self-moving obstacles and mirrors
 - [ ] Make a playground level
 - [ ] Add sound effects
 - [ ] Make several levels
