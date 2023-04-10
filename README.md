@@ -1,5 +1,7 @@
 # Lumens
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
  A puzzle game made within a 28 weeks time limit _(21/28)_ as a side project.
  Currently does not have any levels.
  
