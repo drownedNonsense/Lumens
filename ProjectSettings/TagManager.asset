@@ -4,13 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Reflective
-  - Catalyst Red
-  - Catalyst Yellow
-  - Catalyst Blue
-  - Cursor In
-  - Cursor Out
-  - Prism
+  - UIFade
+  - MainMenu
+  - LevelSelectionMenu
+  - Statics
   layers:
   - Default
   - TransparentFX

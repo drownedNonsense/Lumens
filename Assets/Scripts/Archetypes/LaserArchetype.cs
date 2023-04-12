@@ -1,8 +1,14 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Lumens.Systems;
+using Lumens.Data;
 
 
-public class LaserArchetype : Archetype {
+namespace Lumens.Archetypes {
+[RequireComponent(typeof(LaserData))]
+[RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(LaserSystem))]
+public class LaserArchetype : Archetype<LaserArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -28,7 +34,7 @@ public class LaserArchetype : Archetype {
             Generic.PlaneLayer plane = Generic.PlaneLayer.White
         ) {
 
-            LaserArchetype laser = LaserArchetype.Instantiate(Resources.Load<LaserArchetype>("Entities/Laser"));
+            LaserArchetype laser = LaserArchetype.Instantiate(Resources.Load<LaserArchetype>("Prefabs/Laser"));
 
             laser.data = laser.GetComponent<LaserData>();
             laser.data.transform.position = origin;
@@ -65,6 +71,6 @@ public class LaserArchetype : Archetype {
             this.data     = this.GetComponent<LaserData>();
             this.renderer = this.GetComponent<LineRenderer>();
             this.light    = this.GetComponentInChildren<Light2D>();
-            this.gameObject.AddComponent<LaserSystem>();
+            this.system   = this.GetComponent<LaserSystem>();
         } // void ..        
-} // class ..
+}} // class ..

@@ -1,17 +1,18 @@
 using UnityEngine;
+using Lumens.Singletons;
+using Lumens.Archetypes;
+using Lumens.Data;
 
 
+namespace Lumens.Systems {
 /// <summary> Handles selection. </summary>
-public class SelectSystem : StaticSystem<SelectableArchetype> {
+public sealed class SelectSystem : StaticSystem<SelectableArchetype> {
 
     /*#########*/
     /* D A T A */
     /*#########*/
 
-        private static Controller controller;
         private static Camera mainCamera;
-        private static Texture2D cursor;
-        private static Texture2D cursorSelect;
 
 
     /*###################*/
@@ -20,33 +21,28 @@ public class SelectSystem : StaticSystem<SelectableArchetype> {
 
         protected override void Awake() {
             base.Awake();
-            SelectSystem.controller   = this.GetComponentInParent<Controller>();
-            SelectSystem.mainCamera   = Camera.main;
-            SelectSystem.cursor       = Resources.Load<Texture2D>("cursor");
-            SelectSystem.cursorSelect = Resources.Load<Texture2D>("cursorSelect");
+            SelectSystem.mainCamera = Camera.main;
         } // void ..
 
 
         private void Update() {
 
             RaycastHit2D hit = Physics2D.Raycast(
-                SelectSystem.mainCamera.ScreenToWorldPoint(SelectSystem.controller.selection),
+                SelectSystem.mainCamera.ScreenToWorldPoint(Controller.selection),
                 Vector2.zero,
                 0f,
                 Generic.TARGET_LAYER
             ); // Raycast()
 
 
-            if (hit) Cursor.SetCursor(cursorSelect, new Vector2(4f, 4f), CursorMode.Auto);
-            else     Cursor.SetCursor(cursor,       new Vector2(4f, 4f), CursorMode.Auto);
-
-
-            if (SelectSystem.controller.a.up && SelectSystem.controller.shift) {
+            CursorManager.SetHover(hit);
+            if (Controller.a.up && Controller.shift) {
                 foreach (SelectableArchetype selectable in this.archetypes)
                     selectable.data.isActive = false;
 
                 if (hit) {
 
+                    SoundManager.PlayClick(false);
                     SelectionData selectionData = hit.transform.GetComponent<SelectionData>();
                     selectionData.isActive   = true;
                     selectionData.isSelected = !selectionData.isSelected;
@@ -54,4 +50,4 @@ public class SelectSystem : StaticSystem<SelectableArchetype> {
                 } // if ..
             } // if ..
         } // void ..
-} // class ..
+}} // namespace ..

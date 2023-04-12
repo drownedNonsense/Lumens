@@ -1,14 +1,16 @@
 using UnityEngine;
+using Lumens.Archetypes;
 
 
+namespace Lumens.Systems {
 /// <summary> Handles entity movement along a path. </summary>
-public class PathMovementSystem : System<PathMovementArchetype> {
+public sealed class PathMovementSystem : System<PathMovementArchetype> {
 
     /*#########*/
     /* D A T A */
     /*#########*/
 
-        private const float ROTATION_SPEED    = 22.5f;
+        private const float ROTATION_SPEED    = 360f;
         private const float TRANSLATION_SPEED = 1f;
 
 
@@ -17,12 +19,28 @@ public class PathMovementSystem : System<PathMovementArchetype> {
     /*###################*/
 
         private void Update() {
-
             if (this.archetype.powerData.isActivated) {
-                
                 if (this.archetype.data.hasReachedTheNextNode) {
-                    if (this.archetype.data.movesForward) this.archetype.data.currentNodeIndex++;
-                    else                                  this.archetype.data.currentNodeIndex--;
+
+                    float rotationOffset = this.archetype
+                        .data
+                        .nextNode
+                        .eulerAngles
+                        .z
+                    - this.transform.eulerAngles.z;
+
+                    this.archetype
+                        .movementData
+                        .rotation = Mathf.Clamp(
+                        PathMovementSystem.ROTATION_SPEED * Mathf.Sign(rotationOffset),
+                        Mathf.Min(rotationOffset, -rotationOffset),
+                        Mathf.Max(rotationOffset, -rotationOffset));
+
+
+                    if (Mathf.Abs(rotationOffset) < 6f) {
+                        if (this.archetype.data.movesForward) this.archetype.data.currentNodeIndex++;
+                        else                                  this.archetype.data.currentNodeIndex--;
+                    } // if ..
                 } // if ..
 
 
@@ -38,22 +56,11 @@ public class PathMovementSystem : System<PathMovementArchetype> {
 
                 this.archetype
                     .movementData
-                    .translation = posOffset.normalized * PathMovementSystem.TRANSLATION_SPEED;
-
-
-                float rotationOffset = this.archetype
-                    .data
-                    .nextNode
-                    .eulerAngles
-                    .z
-                - this.transform.eulerAngles.z;
-
-                this.archetype
-                    .movementData
-                    .rotation = Mathf.Clamp(
-                        rotationOffset,
-                        -PathMovementSystem.ROTATION_SPEED,
-                        PathMovementSystem.ROTATION_SPEED);
+                    .translation =
+                    Vector2.ClampMagnitude(
+                        posOffset.normalized * PathMovementSystem.TRANSLATION_SPEED,
+                        posOffset.magnitude
+                    ); // ClampMagnitude()
 
             } else {
 
@@ -62,4 +69,4 @@ public class PathMovementSystem : System<PathMovementArchetype> {
 
             } // if ..
         } // void ..
-} // class ..
+}} // namespace ..

@@ -1,15 +1,23 @@
 using UnityEngine;
+using Lumens.Systems;
+using Lumens.Data;
 
 
-public class PathMovementArchetype : Archetype {
+namespace Lumens.Archetypes {
+[RequireComponent(typeof(PathData))]
+[RequireComponent(typeof(MovementData))]
+[RequireComponent(typeof(PowerData))]
+[RequireComponent(typeof(PathMovementSystem))]
+public class PathMovementArchetype : Archetype<PathMovementArchetype> {
 
     /*#########*/
     /* D A T A */
     /*#########*/
 
-        public PathData     data         { get; private set; }
-        public MovementData movementData { get; private set; }
-        public PowerData    powerData    { get; private set; }
+        public PathData         data         { get; private set; }
+        public MovementData     movementData { get; private set; }
+        public PowerData        powerData    { get; private set; }
+        public new LineRenderer renderer     { get; private set; }
 
 
     /*###############################*/
@@ -17,9 +25,10 @@ public class PathMovementArchetype : Archetype {
     /*###############################*/
     
         protected override void InitComponents() {
-            this.data         = this.GetComponent<PathData>();
-            this.movementData = this.GetComponent<MovementData>();
-            this.powerData    = this.GetComponent<PowerData>();
-            this.gameObject.AddComponent<PathMovementSystem>();
+            this.data         = this.gameObject.GetComponent<PathData>();
+            this.movementData = this.gameObject.GetComponent<MovementData>();
+            this.powerData    = this.gameObject.GetComponent<PowerData>();
+            this.renderer     = this.gameObject.TryAddComponentInChildren<LineRenderer>(Resources.Load<GameObject>("Prefabs/Rail"));
+            this.system       = this.gameObject.GetComponent<PathMovementSystem>();
         } // void ..
-} // class ..
+}} // namespace ..

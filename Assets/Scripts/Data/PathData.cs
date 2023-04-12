@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+namespace Lumens.Data {
 public class PathData : MonoBehaviour {
 
     /*#########*/
@@ -21,8 +22,10 @@ public class PathData : MonoBehaviour {
 
         /// <summary> Points at the next path node if it exists. </summary>
         public Transform nextNode { get {
-            if (this.movesForward) return this.nodes[this.currentNodeIndex + 1];
-            else                   return this.nodes[this.currentNodeIndex - 1];
+            if (this.nodes != null)
+                if (this.movesForward) return this.nodes[this.currentNodeIndex + 1];
+                else                   return this.nodes[this.currentNodeIndex - 1];
+            else return this.transform;
         }} // Transform ..
 
         /// <summary> Is true when the entity has reached the last path node. </summary>
@@ -33,6 +36,6 @@ public class PathData : MonoBehaviour {
         /// <summary> Is true when the entity is at the next path node position. </summary>
         public bool hasReachedTheNextNode =>
             (this.nextNode.position - this.transform.position)
-                .sqrMagnitude < 0.1f;
+                .sqrMagnitude < 0.005f;
 
-} // class ..
+}} // namespace ..

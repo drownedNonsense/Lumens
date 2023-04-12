@@ -1,6 +1,8 @@
 using UnityEngine;
+using Lumens.Archetypes;
 
 
+namespace Lumens.Data {
 public class LaserData : MonoBehaviour {
 
     /*#########*/
@@ -42,4 +44,4 @@ public class LaserData : MonoBehaviour {
         public void ResetCoolDown() =>
             this.coolDown = COOL_DOWN_TIME;
 
-} // class ..
+}} // namespace ..

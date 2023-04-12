@@ -1,4 +1,13 @@
-public class PowerSourceArchetype : Archetype {
+using UnityEngine;
+using Lumens.Systems;
+using Lumens.Data;
+
+
+namespace Lumens.Archetypes {
+[RequireComponent(typeof(PowerSourceData))]
+[RequireComponent(typeof(PowerData))]
+[RequireComponent(typeof(PowerSourceSystem))]
+public class PowerSourceArchetype : Archetype<PowerSourceArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -13,8 +22,8 @@ public class PowerSourceArchetype : Archetype {
     /*###############################*/
 
         protected override void InitComponents() {
-            this.data      = this.GetComponent<PowerSourceData>();
-            this.powerData = this.GetComponent<PowerData>();
-            this.gameObject.AddComponent<PowerSourceSystem>();
+            this.data      = this.gameObject.GetComponent<PowerSourceData>();
+            this.powerData = this.gameObject.GetComponent<PowerData>();
+            this.system    = this.gameObject.GetComponent<PowerSourceSystem>();
         } // void ..
-} // class ..
+}} // namespace ..

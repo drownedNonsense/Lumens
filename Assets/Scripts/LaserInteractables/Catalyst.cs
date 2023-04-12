@@ -1,15 +1,16 @@
 using UnityEngine;
+using Lumens.Singletons;
+using Lumens.Archetypes;
 
 
+namespace Lumens.Interactables {
 public class Catalyst : LaserInteractable {
     
     /*#########*/
     /* D A T A */
     /*#########*/
 
-        [field: SerializeField]
-        public Generic.PlaneLayer planeLayer { get; private set; }
-        public CatalystArchetype  archetype  { get; private set; }
+        public CatalystArchetype archetype { get; private set; }
 
 
     /*###################*/
@@ -25,7 +26,8 @@ public class Catalyst : LaserInteractable {
     /*###############################*/
 
         public override void OnPoweredStart(LaserArchetype laser, RaycastHit2D hit) {
-
+            
+            SoundManager.PlayPower(false);
             this.archetype.powerData.isPowered = true;
             if (!this.archetype.powerData.isActivated)
                 this.archetype.TurnOn();
@@ -43,7 +45,7 @@ public class Catalyst : LaserInteractable {
                     laser.data.power - 1,
                     (Generic.PlaneLayer)(
                         (int)laser.data.planeLayer
-                        ^ ((int)this.planeLayer & ~1))
+                        ^ ((int)this.archetype.data.planeLayer & ~1))
                 ); // NewInstance()
             } // if ..
         } // void ..
@@ -52,8 +54,7 @@ public class Catalyst : LaserInteractable {
         public override void OnPowered(LaserArchetype laser, RaycastHit2D hit) {
 
             this.archetype.powerData.isPowered = true;
-
-            if (laser.data.power > 1) {
+            if (laser.data.power > 1 && laser.data.reflection) {
 
                 Vector2 outerSide = hit.collider.ClosestPoint(hit.centroid + (Vector2)laser.transform.up);
                 Vector2 origin    = outerSide
@@ -64,4 +65,4 @@ public class Catalyst : LaserInteractable {
 
             } // if ..
         } // void ..
-} // class ..
+}} // namespace ..

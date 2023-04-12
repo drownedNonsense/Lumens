@@ -1,4 +1,13 @@
-public class PlayerRotationArchetype : Archetype {
+using UnityEngine;
+using Lumens.Systems;
+using Lumens.Data;
+
+
+namespace Lumens.Archetypes {
+[RequireComponent(typeof(MovementData))]
+[RequireComponent(typeof(SelectionData))]
+[RequireComponent(typeof(RotationInputSystem))]
+public class PlayerRotationArchetype : Archetype<PlayerRotationArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -13,8 +22,8 @@ public class PlayerRotationArchetype : Archetype {
     /*###############################*/
 
         protected override void InitComponents() {
-            this.data          = this.GetComponent<MovementData>();
-            this.selectionData = this.GetComponent<SelectionData>();
-            this.gameObject.AddComponent<RotationInputSystem>();
+            this.data          = this.gameObject.GetComponent<MovementData>();
+            this.selectionData = this.gameObject.GetComponent<SelectionData>();
+            this.system        = this.gameObject.GetComponent<RotationInputSystem>();
         } // void ..
-} // class ..
+}} // namespace ..

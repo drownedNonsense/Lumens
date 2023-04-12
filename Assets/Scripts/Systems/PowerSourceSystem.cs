@@ -1,5 +1,9 @@
+using Lumens.Archetypes;
+
+
+namespace Lumens.Systems {
 /// <summary> Handles the power source archetype. </summary>
-public class PowerSourceSystem : System<PowerSourceArchetype> {
+public sealed class PowerSourceSystem : System<PowerSourceArchetype> {
 
     /*###################*/
     /* L I F E   T I M E */
@@ -8,9 +12,9 @@ public class PowerSourceSystem : System<PowerSourceArchetype> {
         private void LateUpdate() {
             foreach (PowerArchetype power in this.archetype.data.powerOutputs) {
 
-                if (this.archetype.powerData.isActivated) power.data.isPowered = true;
-                else                                      power.data.isPowered = false;
+                if (this.archetype.powerData.isPowered) power.data.isPowered |= true;
+                else                                    power.data.isPowered |= false;
 
             } // foreach ..
         } // void ..
-} // class ..
+}} // namespace ..

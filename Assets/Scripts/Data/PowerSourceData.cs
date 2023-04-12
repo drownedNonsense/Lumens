@@ -1,6 +1,8 @@
 using UnityEngine;
+using Lumens.Archetypes;
 
 
+namespace Lumens.Data {
 public class PowerSourceData : MonoBehaviour {
 
     /*#########*/
@@ -10,4 +12,4 @@ public class PowerSourceData : MonoBehaviour {
         /// <summary> An array of entities data that can be powered by the entity. </summary>
         public PowerArchetype[] powerOutputs = null;
 
-} // class ..
+}} // namespace ..

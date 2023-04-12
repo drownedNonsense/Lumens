@@ -1,8 +1,9 @@
-using UnityEngine;
+using Lumens.Archetypes;
 
 
+namespace Lumens.Systems {
 /// <summary> Handles the power source archetype. </summary>
-public class PowerSystem : System<PowerArchetype> {
+public sealed class PowerSystem : System<PowerArchetype> {
 
     /*###################*/
     /* L I F E   T I M E */
@@ -17,4 +18,4 @@ public class PowerSystem : System<PowerArchetype> {
             this.archetype.data.isPowered = false;
 
         } // void ..
-} // class ..
+}} // namespace ..

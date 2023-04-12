@@ -1,4 +1,10 @@
-public class SelectableArchetype : Archetype {
+using UnityEngine;
+using Lumens.Data;
+
+
+namespace Lumens.Archetypes {
+[RequireComponent(typeof(SelectionData))]
+public class SelectableArchetype : Archetype<SelectableArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -12,5 +18,6 @@ public class SelectableArchetype : Archetype {
     /*###############################*/
     
         protected override void InitComponents() =>
-            this.data = this.GetComponent<SelectionData>();
-} // class ..
+            this.data = this.gameObject.GetComponent<SelectionData>();
+            
+}} // namespace ..

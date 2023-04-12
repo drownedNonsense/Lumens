@@ -1,7 +1,13 @@
 using UnityEngine;
+using Lumens.Systems;
+using Lumens.Data;
 
 
-public class MovingArchetype : Archetype {
+namespace Lumens.Archetypes {
+[RequireComponent(typeof(MovementData))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(MovementSystem))]
+public class MovingArchetype : Archetype<MovingArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -16,8 +22,8 @@ public class MovingArchetype : Archetype {
     /*###############################*/
     
         protected override void InitComponents() {
-            this.data = this.GetComponent<MovementData>();
-            this.body = this.GetComponent<Rigidbody2D>();
-            this.gameObject.AddComponent<MovementSystem>();
+            this.data   = this.gameObject.GetComponent<MovementData>();
+            this.body   = this.gameObject.GetComponent<Rigidbody2D>();
+            this.system = this.gameObject.GetComponent<MovementSystem>();
         } // void ..
-} // class ..
+}} // namespace ..

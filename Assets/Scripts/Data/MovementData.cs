@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+namespace Lumens.Data {
 public class MovementData : MonoBehaviour {
 
     /*#########*/
@@ -13,4 +14,4 @@ public class MovementData : MonoBehaviour {
         /// <summary> The amount of rotation the entity rotates each frame. </summary>
         public float rotation = 0f;
 
-} // class ..
+}} // namespace ..

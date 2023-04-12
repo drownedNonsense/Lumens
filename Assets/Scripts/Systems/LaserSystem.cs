@@ -2,10 +2,12 @@ using System.Collections;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 using UnityEngine;
+using Lumens.Archetypes;
 
 
+namespace Lumens.Systems {
 /// <summary> Handles the Laser archetype. </summary>
-public class LaserSystem : System<LaserArchetype> {
+public sealed class LaserSystem : System<LaserArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -18,7 +20,7 @@ public class LaserSystem : System<LaserArchetype> {
         private const float LIGHT_WAVING    = 4f;
         private const float LIGHT_VARIANCE  = 0.25f;
 
-        private ChromaticAberration effect;
+        private static ChromaticAberration effect;
 
 
     /*###################*/
@@ -32,7 +34,7 @@ public class LaserSystem : System<LaserArchetype> {
 
             for (int i = 0; i < profile.components.Count; i++)
                 if (profile.components[i].name == "ChromaticAberration")
-                    this.effect = (ChromaticAberration)profile.components[i];
+                    LaserSystem.effect = (ChromaticAberration)profile.components[i];
 
         } // void ..
 
@@ -112,7 +114,7 @@ public class LaserSystem : System<LaserArchetype> {
                         out this.archetype.data.laserInteractable
                     )) {
 
-                        this.StartCoroutine("Shake");
+                        this.StartCoroutine(this.Shake());
                         this.archetype.data.laserInteractable.OnPoweredStart(this.archetype, hit);
 
                         if (this.archetype.data.reflection)
@@ -127,10 +129,10 @@ public class LaserSystem : System<LaserArchetype> {
         /// <summary> A coroutine that applies a 'glitch' or shake effect to the camera. </summary>
         private IEnumerator Shake() {
             for (int i = 0; i < 10; i++) {
-                this.effect.intensity.value = DEFAULT_EFFECT_INTENSITY + i * 0.05f;
+                LaserSystem.effect.intensity.value = LaserSystem.DEFAULT_EFFECT_INTENSITY + i * 0.05f;
                 yield return new WaitForSeconds(0.01f);;
             } // for ..
 
-            this.effect.intensity.value = DEFAULT_EFFECT_INTENSITY;
+            LaserSystem.effect.intensity.value = LaserSystem.DEFAULT_EFFECT_INTENSITY;
         } // void ..
-} // class ..
+}} // namespace ..

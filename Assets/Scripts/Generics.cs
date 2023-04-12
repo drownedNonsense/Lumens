@@ -1,8 +1,46 @@
 using UnityEngine;
 
 
+namespace Lumens {
 /// <summary> A static container of all Lumens' generic values. </summary>
 public static class Generic {
+
+    /// <summary> Adds a component to the monobehaviour while preventing duplicates. </summary>
+    public static COMPONENT TryAddComponent<COMPONENT>(this GameObject x)
+    where COMPONENT : Component {
+
+        COMPONENT component = x.GetComponent<COMPONENT>();
+        if (component) return component;
+        else           return x.gameObject.AddComponent<COMPONENT>();
+        
+    } // COMPONENT ..
+
+
+    /// <summary> Adds a child component to the monobehaviour while preventing duplicates. </summary>
+    public static COMPONENT TryAddComponentInChildren<COMPONENT>(this GameObject x)
+    where COMPONENT : Component {
+
+        COMPONENT component = x.GetComponentInChildren<COMPONENT>();
+        
+        if (component) return component;
+        else return new GameObject(typeof(COMPONENT).Name, typeof(COMPONENT))
+            .GetComponent<COMPONENT>();
+
+    } // COMPONENT ..
+
+
+    /// <summary> Adds a child component to the monobehaviour while preventing duplicates. </summary>
+    public static COMPONENT TryAddComponentInChildren<COMPONENT>(this GameObject x, GameObject componentInstance)
+    where COMPONENT : Component {
+
+        COMPONENT component = x.GetComponentInChildren<COMPONENT>();
+        
+        if (component) return component;
+        else return GameObject.Instantiate(componentInstance, x.transform)
+            .TryAddComponent<COMPONENT>();
+
+    } // COMPONENT ..
+
 
     /// <summary> A type which represents all combination of higher planes intersections. </summary>
     public enum PlaneLayer {
@@ -53,4 +91,4 @@ public static class Generic {
         new Color32(000, 255, 000, 255), // 110 GREEN
         new Color32(000, 000, 000, 255)  // 111 BLACK
     }; // Color32[]
-} // class ..
+}} // namespace ..

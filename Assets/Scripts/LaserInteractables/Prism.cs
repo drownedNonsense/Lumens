@@ -1,6 +1,9 @@
 using UnityEngine;
+using Lumens.Singletons;
+using Lumens.Archetypes;
 
 
+namespace Lumens.Interactables {
 public class Prism : LaserInteractable {
 
     /*###############################*/
@@ -8,6 +11,8 @@ public class Prism : LaserInteractable {
     /*###############################*/
 
         public override void OnPoweredStart(LaserArchetype laser, RaycastHit2D hit) {
+
+            SoundManager.PlayPower(false);
             if (laser.data.power > 1)
                 laser.data.reflection = LaserArchetype.NewInstance(
                     hit.collider.ClosestPoint(hit.transform.position + hit.transform.up)
@@ -20,7 +25,7 @@ public class Prism : LaserInteractable {
 
 
         public override void OnPowered(LaserArchetype laser, RaycastHit2D hit) {
-            if (laser.data.power > 1) {
+            if (laser.data.power > 1 && laser.data.reflection) {
 
                 laser.data
                     .reflection
@@ -35,4 +40,4 @@ public class Prism : LaserInteractable {
                     
             } // if ..
         } // void ..
-} // class ..
+}} // namespace ..

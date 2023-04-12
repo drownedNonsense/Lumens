@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+namespace Lumens.Data {
 public class PowerData : MonoBehaviour {
 
     /*#########*/
@@ -16,4 +17,4 @@ public class PowerData : MonoBehaviour {
         /// <summary> The entity's power won't turn off after the power source is disabled. </summary>
         public bool remainActivated = false;
 
-} // class ..
+}} // namespace ..

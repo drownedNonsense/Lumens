@@ -1,4 +1,13 @@
-public class GeneratorArchetype : Archetype {
+using UnityEngine;
+using Lumens.Systems;
+using Lumens.Data;
+
+
+namespace Lumens.Archetypes {
+[RequireComponent(typeof(PowerData))]
+[RequireComponent(typeof(SelectionData))]
+[RequireComponent(typeof(GeneratorSystem))]
+public class GeneratorArchetype : Archetype<GeneratorArchetype> {
 
     /*#########*/
     /* D A T A */
@@ -14,9 +23,9 @@ public class GeneratorArchetype : Archetype {
     /*###############################*/
     
         protected override void InitComponents() {
-            this.laserData     = this.GetComponentInChildren<LaserData>();
-            this.powerData     = this.GetComponent<PowerData>();
-            this.selectionData = this.GetComponent<SelectionData>();
-            this.gameObject.AddComponent<GeneratorSystem>();
+            this.laserData     = this.gameObject.TryAddComponentInChildren<LaserData>(Resources.Load<GameObject>("Prefabs/Laser"));
+            this.powerData     = this.gameObject.GetComponent<PowerData>();
+            this.selectionData = this.gameObject.GetComponent<SelectionData>();
+            this.system        = this.gameObject.GetComponent<GeneratorSystem>();
         } // void ..
-} // class ..
+}} // namespace ..

@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+namespace Lumens.Data {
 public class SelectionData : MonoBehaviour {
 
     /*#########*/
@@ -13,4 +14,4 @@ public class SelectionData : MonoBehaviour {
         /// <summary> Is true when the entity is active. </summary>
         public bool isActive = false;
 
-} // class ..
+}} // namespace ..
