@@ -1,6 +1,8 @@
 # Lumens
 
- A puzzle game made within a 28 weeks time limit _(15/28)_ as a side project.
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+ A puzzle game made within a 28 weeks time limit _(21/28)_ as a side project.
  Currently does not have any levels.
  
  > Darkness has fallen in the underworld. Reactivate the ancient catalysts and bring back the light. Beware, for they will bend your light to higher planes!\
@@ -13,9 +15,10 @@
  # TODO LIST (ordered)
 - [x] Implement laser reflection
 - [x] Implement hyperplane interactions & catalysts
-- [ ] Implement buttons, self-moving obstacles and mirrors
-- [ ] Make a playground level
-- [ ] Add sound effects
+- [x] Implement buttons, self-moving obstacles and mirrors
+- [x] Make a playground level
+- [x] Add sound effects
+- [x] Add a menu
 - [ ] Make several levels
 - [ ] Add a tutorial
 - [ ] Implement sound distorsion depending on the 3 RYB bits
