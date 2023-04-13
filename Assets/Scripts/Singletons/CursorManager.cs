@@ -10,9 +10,10 @@ public sealed class CursorManager : Singleton<CursorManager> {
     /* D A T A */
     /*#########*/
 
-        private Texture2D _defaultSprite  => PlayerSettings.defaultCursor;
+        private Texture2D _defaultSprite;
+        private Vector2   _defaultHotspot;
+        
         private Texture2D _hoverSprite;
-        private Vector2   _defaultHotspot => PlayerSettings.cursorHotspot;
         private Vector2   _hoverHotspot;
 
 
@@ -28,6 +29,12 @@ public sealed class CursorManager : Singleton<CursorManager> {
         protected override void Awake() {
 
             base.Awake();
+
+            CursorManager.instance._defaultSprite   = Resources.Load<Texture2D>("Sprites/cursor");
+            CursorManager._instance._defaultHotspot = new Vector2(
+                CursorManager._instance._defaultSprite.width  * 0.5f,
+                CursorManager._instance._defaultSprite.height * 0.5f
+            ); // Vector2()
 
             CursorManager.instance._hoverSprite   = Resources.Load<Texture2D>("Sprites/hoverCursor");
             CursorManager._instance._hoverHotspot = new Vector2(

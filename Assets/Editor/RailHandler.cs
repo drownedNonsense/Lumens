@@ -3,6 +3,7 @@ using UnityEditor;
 using Lumens.Archetypes;
 
 
+#if UNITY_EDITOR
 namespace Lumens.Editors {
 /// <summary> Handles path rails. </summary>
 [InitializeOnLoad]
@@ -15,7 +16,6 @@ public sealed class RailHandler {
     
     /// <summary> Perform the paths rails handling. </summary>
     private static void Update () {
-
         if (!Application.isPlaying)
             foreach (PathMovementArchetype archetype in GameObject.FindObjectsOfType<PathMovementArchetype>()) {
 
@@ -34,3 +34,4 @@ public sealed class RailHandler {
             } // foreach ..
      } // void ..
 }} // namespace ..
+#endif

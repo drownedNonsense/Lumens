@@ -12,6 +12,13 @@ public abstract class World : MonoBehaviour {
     /* L I F E   T I M E */
     /*###################*/
 
+        protected virtual void Awake() {
+            if (!SceneManager.GetSceneByName("Statics").isLoaded)
+                SceneManager.LoadScene("Statics", LoadSceneMode.Additive);
+                
+        } // void ..
+
+
         protected virtual void Start() =>
             StartCoroutine(Fade.FadeIn());
 

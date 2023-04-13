@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Lumens.Singletons;
 using Lumens.Archetypes;
 
 
@@ -50,6 +51,10 @@ public class Level : World {
         } // void ..
 
 
+        private void Update() =>
+            this._infoBoxes.SetActive(this._infoBoxes.activeSelf ^ Controller.cancel.up);
+
+
     /*###############################*/
     /* I M P L E M E N T A T I O N S */
     /*###############################*/
@@ -77,7 +82,7 @@ public class Level : World {
             Level.infoBoxes.SetActive(false);
             Level.levelCompletedMenu.SetActive(true);
             Level.levelCompleted.text =
-                $"You have brought the light back to the {SceneManager.GetActiveScene().name}";
+                $"LEVEL COMPLETED\n***\nYou have brought back the light\nin the {SceneManager.GetActiveScene().name}!";
 
         } // void ..
 

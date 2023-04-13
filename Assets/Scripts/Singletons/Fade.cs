@@ -23,7 +23,8 @@ public sealed class Fade : Singleton<Fade> {
         
         protected override void Awake() {
             base.Awake();
-            this._mask = GameObject.FindGameObjectWithTag("UIFade").GetComponent<Image>();
+            this._mask = this.gameObject
+                .TryAddComponentInChildren<Image>(Resources.Load<GameObject>("Prefabs/UIFade"));
         } // void ..
 
 

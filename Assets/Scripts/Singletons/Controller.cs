@@ -22,10 +22,12 @@ public sealed class Controller : Singleton<Controller> {
         private InputAction _aAction;
         private InputAction _bAction;
         private InputAction _shiftAction;
+        private InputAction _cancel;
 
-        public static Button a     => new Button(Controller.instance._aAction);
-        public static Button b     => new Button(Controller.instance._bAction);
-        public static Button shift => new Button(Controller.instance._shiftAction);
+        public static Button a      => new Button(Controller.instance._aAction);
+        public static Button b      => new Button(Controller.instance._bAction);
+        public static Button shift  => new Button(Controller.instance._shiftAction);
+        public static Button cancel => new Button(Controller.instance._cancel);
 
 
     /*###################*/
@@ -42,6 +44,7 @@ public sealed class Controller : Singleton<Controller> {
             this._aAction     = playerInput.actions["A"];
             this._bAction     = playerInput.actions["B"];
             this._shiftAction = playerInput.actions["Shift"];
+            this._cancel      = playerInput.actions["Cancel"];
 
         } // Awake()
 
