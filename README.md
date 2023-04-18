@@ -1,13 +1,14 @@
 # Lumens
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+ [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
- A puzzle game made within a 28 weeks time limit _(24/28)_ as a side project.
- Currently only features one level.
+## Description
+
+ A puzzle game made within a 28 weeks time limit as a side project *(DEADLINE reached on the 17/04/23)*.
  
  [Download the prototype build!](https://file.io/aaIDWfKU0PW3)
  
- > Darkness has fallen in the underworld. Reactivate the ancient catalysts and bring back the light. Beware, for they will bend your light to higher planes!\
+ > Darkness has fallen upon the underworld. Reactivate the ancient catalysts and bring back the light before you run out of power. Beware, for they will bend your light to higher planes!\
  > Watch your rays' colour out; their components (RYB) point which higher plane they are intersecting!
  
  ![A screenshot of a test level](Screenshots/Screenshot_0.png "Screenshot N.0")
@@ -16,14 +17,7 @@
  ![A screenshot of a test level](Screenshots/Screenshot_3.png "Screenshot N.3")
  ![A screenshot of a test level](Screenshots/Screenshot_4.png "Screenshot N.4")
  
- # TODO LIST (ordered)
-- [x] Implement laser reflection
-- [x] Implement hyperplane interactions & catalysts
-- [x] Implement buttons, self-moving obstacles and mirrors
-- [x] Make a playground level
-- [x] Add sound effects
-- [x] Add a menu
-- [ ] Make several levels
-- [ ] Add a tutorial
-- [ ] Implement sound distorsion depending on the 3 RYB bits
-- [ ] Add music
+ ## Summary
+ 
+  I hadn't used **Unity** for game dev for a long time so I was a bit rusted. As usual I spent too much time refactoring and cleaning the game without actually making proper levels. **Unity DOTS** still seems to be not production ready so I had to make a workaround for **ECS** *(without implementing parallelisation)*. It was also the first time actually using a music for one of my game.
+ 
