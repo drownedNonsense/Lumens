@@ -6,7 +6,7 @@
 
  A puzzle game made within a 28 weeks time limit as a side project *(DEADLINE reached on the 17/04/23)*.
  
- [Download the prototype build!](https://file.io/aaIDWfKU0PW3)
+ [Download the prototype build!](../main/Lumens/)
  
  > Darkness has fallen upon the underworld. Reactivate the ancient catalysts and bring back the light before you run out of power. Beware, for they will bend your light to higher planes!\
  > Watch your rays' colour out; their components (RYB) point which higher plane they are intersecting!
