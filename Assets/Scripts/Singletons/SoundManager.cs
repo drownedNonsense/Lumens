@@ -2,6 +2,8 @@ using UnityEngine;
 
 
 namespace Lumens.Singletons {
+    
+[RequireComponent(typeof(AudioSource))]
 /// <summary> Handles sound effects. </summary>
 public sealed class SoundManager : Singleton<SoundManager> {
 
@@ -10,12 +12,15 @@ public sealed class SoundManager : Singleton<SoundManager> {
     /*#########*/
 
         private AudioSource _audioSource;
+        private float _volume = 0.75f;
         private AudioClip _success;
         private AudioClip _failure;
         private AudioClip _click;
         private AudioClip _reflection;
         private AudioClip _power;
         private AudioClip _crunch;
+
+        private const float VOLUME_SCALE = 0.2f;
 
 
     /*###################*/
@@ -42,8 +47,16 @@ public sealed class SoundManager : Singleton<SoundManager> {
 
         private static void PlaySound(AudioClip audioClip, bool waitForEndOfClip) {
             if (!SoundManager.instance._audioSource.isPlaying || !waitForEndOfClip)
-                SoundManager.instance._audioSource.PlayOneShot(audioClip);
+                SoundManager.instance._audioSource.PlayOneShot(
+                    audioClip,
+                    SoundManager._instance._volume * SoundManager.VOLUME_SCALE
+                ); // PlayOneShot()
         } // void ..
+
+
+        /// <summary> Set the game's sound effects volume. </summary>
+        public static void SetVolume(float volume) =>
+            SoundManager.instance._volume = volume;
 
 
         /// <summary> Plays a success sound effect. </summary>

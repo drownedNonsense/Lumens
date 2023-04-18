@@ -1,6 +1,4 @@
 using System.Collections;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.Rendering;
 using UnityEngine;
 using Lumens.Archetypes;
 
@@ -13,31 +11,16 @@ public sealed class LaserSystem : System<LaserArchetype> {
     /* D A T A */
     /*#########*/
 
-        private const int   RANGE = 100;
-        private const float DEFAULT_EFFECT_INTENSITY = 0.2f;
+        private const int   RANGE           = 100;
         private const float LIGHT_INTENSITY = 2f;
         private const float LIGHT_RADIUS    = 2f;
         private const float LIGHT_WAVING    = 4f;
         private const float LIGHT_VARIANCE  = 0.25f;
 
-        private static ChromaticAberration effect;
-
 
     /*###################*/
     /* L I F E   T I M E */
     /*###################*/
-
-        protected override void Awake() {
-
-            base.Awake();
-            VolumeProfile profile = Resources.Load<VolumeProfile>("VolumeProfile");
-
-            for (int i = 0; i < profile.components.Count; i++)
-                if (profile.components[i].name == "ChromaticAberration")
-                    LaserSystem.effect = (ChromaticAberration)profile.components[i];
-
-        } // void ..
-
 
         private void Update() {
 
@@ -114,7 +97,7 @@ public sealed class LaserSystem : System<LaserArchetype> {
                         out this.archetype.data.laserInteractable
                     )) {
 
-                        this.StartCoroutine(this.Shake());
+                        this.StartCoroutine(World.Shake());
                         this.archetype.data.laserInteractable.OnPoweredStart(this.archetype, hit);
 
                         if (this.archetype.data.reflection)
@@ -124,15 +107,4 @@ public sealed class LaserSystem : System<LaserArchetype> {
                 } // if ..
             } // if ..
         } // void .. 
-
-
-        /// <summary> A coroutine that applies a 'glitch' or shake effect to the camera. </summary>
-        private IEnumerator Shake() {
-            for (int i = 0; i < 10; i++) {
-                LaserSystem.effect.intensity.value = LaserSystem.DEFAULT_EFFECT_INTENSITY + i * 0.05f;
-                yield return new WaitForSeconds(0.01f);;
-            } // for ..
-
-            LaserSystem.effect.intensity.value = LaserSystem.DEFAULT_EFFECT_INTENSITY;
-        } // void ..
 }} // namespace ..

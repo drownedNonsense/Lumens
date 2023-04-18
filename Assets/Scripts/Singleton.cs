@@ -39,12 +39,15 @@ public class Singleton<COMPONENT> : MonoBehaviour where COMPONENT : Component {
     /*###################*/
         
         protected virtual void Awake () {
+
+            DontDestroyOnLoad(this.gameObject);
+
+            
             if (!Singleton<COMPONENT>._instance) {
 
                 Singleton<COMPONENT>._instance = this as COMPONENT;
                 DontDestroyOnLoad(this.gameObject);
 
             } else Destroy (gameObject);
-
         } // void ..
 }} // namespace ..

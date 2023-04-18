@@ -16,10 +16,15 @@ public class Level : World {
         [field: SerializeField] private TextMeshProUGUI _goal;
         [field: SerializeField] private GameObject _levelCompletedMenu;
         [field: SerializeField] private TextMeshProUGUI _levelCompleted;
+        [field: SerializeField] private TextMeshProUGUI _timeLeftInfo;
+        [field: SerializeField] private int _timeLimit;
+
+        private static bool levelPaused = false;
 
         /// <summary> A static reference to the current laser power strength. </summary>
         public static int power => 1 << Level.litCatalystCount + Level.DEFAULT_POWER;
 
+        private static GameObject timeLeftInfo;
         private static GameObject infoBoxes;
         private static TextMeshProUGUI goal;
         private static GameObject levelCompletedMenu;
@@ -29,10 +34,14 @@ public class Level : World {
         private static int litCatalystCount = 0;
 
         /// <summary> A static counter of catalyst on level loading. </summary>
-        private static int catalystCount    = 0;
+        private static int catalystCount = 0;
+
+        /// <summary> A static counter of remaining time on this level. </summary>
+        private static float timeLeft = 0;
 
 
-        private const int DEFAULT_POWER = 2;
+        private const int DEFAULT_POWER       = 2;
+        private const int CATALYST_TIME_BONUS = 15;
 
 
     /*###################*/
@@ -41,18 +50,34 @@ public class Level : World {
 
         protected override void Start() {
             base.Start();
-            Level.litCatalystCount = 0;
-            Level.catalystCount    = GameObject.FindObjectsOfType<CatalystArchetype>().Length;
+
+            Time.timeScale = 1f;
+
+            Level.catalystCount      = GameObject.FindObjectsOfType<CatalystArchetype>().Length;
+            Level.timeLeftInfo       = this._timeLeftInfo.gameObject;
             Level.infoBoxes          = this._infoBoxes;
             Level.goal               = this._goal;
             Level.levelCompletedMenu = this._levelCompletedMenu;
             Level.levelCompleted     = this._levelCompleted;
             Level.UpdateGoalText();
+
+            Level.timeLeft = this._timeLimit;
         } // void ..
 
 
-        private void Update() =>
-            this._infoBoxes.SetActive(this._infoBoxes.activeSelf ^ Controller.cancel.up);
+        private void Update() {
+            if (!Level.levelPaused) {
+
+                Level.timeLeft -= Time.deltaTime;
+                
+                this._timeLeftInfo.text = ((int)Level.timeLeft).ToString();
+                this._infoBoxes.SetActive(this._infoBoxes.activeSelf ^ Controller.cancel.up);
+
+                if (float.IsNegative(Level.timeLeft))
+                    Level.LevelFailed();
+
+            } // if ..
+        } // void ..
 
 
     /*###############################*/
@@ -69,6 +94,7 @@ public class Level : World {
 
             Level.litCatalystCount++;
             Level.UpdateGoalText();
+            Level.TimeBonus();
 
             if (Level.litCatalystCount >= Level.catalystCount)
                 Level.LevelCompleted();
@@ -76,9 +102,16 @@ public class Level : World {
         } // void ..
 
 
+        /// <summary> Increases the remaining time counter. </summary>
+        private static void TimeBonus() =>
+            Level.timeLeft += Level.CATALYST_TIME_BONUS;
+
+
         /// <summary> Performs the level completion logics. </summary>
         public static void LevelCompleted() {
 
+            Level.levelPaused = true;
+            Level.timeLeftInfo.SetActive(false);
             Level.infoBoxes.SetActive(false);
             Level.levelCompletedMenu.SetActive(true);
             Level.levelCompleted.text =
@@ -87,8 +120,22 @@ public class Level : World {
         } // void ..
 
 
-        /// <summary> Brings the player back to the menu. </summary>
-        public void OnBackToMenu() =>
-            base.LoadWorld("Menu");
+        /// <summary> Performs the level failure logics. </summary>
+        public static void LevelFailed() {
 
+            Level.levelPaused = true;
+            SoundManager.PlayFailure(false);
+            Level.timeLeftInfo.SetActive(false);
+            Level.infoBoxes.SetActive(false);
+            Level.levelCompletedMenu.SetActive(true);
+            Level.levelCompleted.text =
+                $"LEVEL FAILED\n***\nYou did not manage to bring\nthe light back to the {SceneManager.GetActiveScene().name}...";
+
+        } // void ..
+
+
+        /// <summary> Brings the player back to the menu. </summary>
+        public void OnBackToMenu() {
+            base.LoadWorld("Menu");
+        } // void ..
 }} // namespace ..
